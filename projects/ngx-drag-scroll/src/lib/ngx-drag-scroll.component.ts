@@ -243,8 +243,15 @@ export class DragScrollComponent implements OnDestroy, AfterViewInit, OnChanges,
     // store ele width height for later user
     this.markElDimension();
 
-    this._renderer.setStyle(this._contentRef.nativeElement, 'width', this.elWidth);
-    this._renderer.setStyle(this._contentRef.nativeElement, 'height', this.elHeight);
+    if (this.elWidth[0] !== '0') {
+      this._renderer.setStyle(this._contentRef.nativeElement, 'width', this.elWidth);
+    } else {
+      this._renderer.setStyle(this._contentRef.nativeElement, 'width', '100%');
+    }
+
+    if (this.elHeight[0] !== '0') {
+      this._renderer.setStyle(this._contentRef.nativeElement, 'height', this.elHeight);
+    }
 
     if (this.wrapper) {
       this.checkScrollbar();
